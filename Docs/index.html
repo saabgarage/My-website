@@ -1,10 +1,10 @@
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
   <meta charset="UTF-8">
   <title>Saab Garage: Cars & Parts</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Saab Garage offers genuine Saab parts and vehicles globally. Request any part or car easily and get fast support.">
   <style>
     body {
       font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
@@ -13,7 +13,7 @@
       color: #333;
     }
     header {
-      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://images.unsplash.com/photo-1570129477492-45c003edd2be?ixlib=rb-4.0.3&auto=format&fit=crop&w=1950&q=80') no-repeat center center/cover;
+      background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('https://conawaymotors.com/wp-content/uploads/2021/11/shutterstock_1992606401.jpg') no-repeat center center/cover;
       color: white;
       text-align: center;
       padding: 80px 20px 100px;
@@ -70,7 +70,9 @@
       font-weight: bold;
       margin-top: 10px;
     }
-    .form-section input, .form-section select, .form-section textarea {
+    .form-section input,
+    .form-section select,
+    .form-section textarea {
       padding: 12px;
       border-radius: 6px;
       border: 1px solid #ccc;
@@ -83,6 +85,15 @@
       font-weight: bold;
       width: 220px;
       align-self: start;
+    }
+    #thankYouMessage {
+      display: none;
+      margin-top: 20px;
+      background-color: #e6ffed;
+      border: 1px solid #4CAF50;
+      padding: 15px;
+      border-radius: 6px;
+      color: #2e7d32;
     }
     footer {
       background-color: #222;
@@ -100,7 +111,7 @@
 <body>
 
 <header>
-  <img src="https://seeklogo.com/images/S/saab-logo-4AC6C12149-seeklogo.com.png" alt="Saab Logo">
+  <img src="https://www.logo-voiture.com/wp-content/uploads/2023/03/logo-saab-aigle-678x381.png" alt="Saab Logo">
   <h1>Saab Garage: Cars & Parts</h1>
   <p>Quick and simple requests for all your Saab part or vehicle needs.</p>
   <a href="#request" class="button">Request Now</a>
@@ -125,7 +136,7 @@
 
 <section class="form-section" id="request">
   <h2>Request a Part or Vehicle</h2>
-  <form action="mailto:saabgarage517@gmail.com" method="post" enctype="text/plain">
+  <form action="https://formspree.io/f/xleqykpv" method="POST" onsubmit="showThankYou(event)">
     <label for="name">Full Name</label>
     <input type="text" name="name" id="name" required>
 
@@ -150,16 +161,33 @@
     <label for="description">Description of Request</label>
     <textarea name="description" id="description" rows="5"></textarea>
 
-    <label for="file">Upload Image (optional)</label>
-    <input type="file" name="file" id="file">
-
     <input type="submit" value="Submit Request">
   </form>
+
+  <div id="thankYouMessage">
+    ✅ Thank you! Your request has been submitted. We'll get back to you shortly.
+  </div>
 </section>
 
 <footer>
   <p>Contact us at <strong>saabgarage517@gmail.com</strong> | TikTok: <a href="https://www.tiktok.com/@saabgarage01">@saabgarage01</a></p>
 </footer>
+
+<script>
+  function showThankYou(event) {
+    event.preventDefault();
+    const form = event.target;
+    form.style.display = 'none';
+    document.getElementById('thankYouMessage').style.display = 'block';
+
+    const formData = new FormData(form);
+    fetch(form.action, {
+      method: 'POST',
+      body: formData,
+      headers: { 'Accept': 'application/json' }
+    });
+  }
+</script>
 
 </body>
 </html>
